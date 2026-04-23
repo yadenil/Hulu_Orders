@@ -1,0 +1,11 @@
+{
+  "name": "hulu-orders-server",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

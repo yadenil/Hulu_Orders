@@ -1,0 +1,8 @@
+{
+  "name": "hulu_orders",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
