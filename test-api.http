@@ -1,0 +1,93 @@
+### 1. TEST GET (Temporary - to check if route exists)
+
+GET http://localhost:5000/api/session
+
+###
+
+### 2. TEST POST - Create new session for table_id = 1
+
+POST http://localhost:5000/api/session
+Content-Type: application/json
+
+{
+    "table_id": 1
+}
+
+###
+
+### 3. TEST POST - Get existing session for same table (should return same session)
+
+POST http://localhost:5000/api/session
+Content-Type: application/json
+
+{
+    "table_id": 1
+}
+
+###
+
+### 4. TEST POST - Create session for table_id = 2
+
+POST http://localhost:5000/api/session
+Content-Type: application/json
+
+{
+    "table_id": 2
+}
+
+###
+
+### 5. TEST POST - Error case (missing table_id)
+
+POST http://localhost:5000/api/session
+Content-Type: application/json
+
+{
+    "wrong_field": 1
+}
+### Test POST - Place order
+
+POST http://localhost:5000/api/order
+Content-Type: application/json
+
+{
+    "table_id": 1,
+    "items": [
+        {
+            "menu_item_id": 1,
+            "quantity": 2
+        }
+    ]
+}
+### Test GET - Kitchen orders (all active orders)
+
+GET http://localhost:5000/api/kitchen/orders
+
+###
+
+### Test PUT - Update order status to PREPARING
+
+PUT http://localhost:5000/api/kitchen/orders/2/status
+Content-Type: application/json
+
+{
+    "status": "PREPARING"
+}
+
+###
+
+### Test PUT - Update order status to READY
+
+PUT http://localhost:5000/api/kitchen/orders/2/status
+Content-Type: application/json
+
+{
+    "status": "READY"
+}
+### Test GET - Order status by order number (Customer tracking)
+
+GET http://localhost:5000/api/orders/105
+
+### 
+
+GET http://localhost:5000/api/orders/106
