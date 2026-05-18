@@ -84,10 +84,73 @@ Content-Type: application/json
 {
     "status": "READY"
 }
+
 ### Test GET - Order status by order number (Customer tracking)
 
-GET http://localhost:5000/api/orders/105
+GET http://localhost:5000/api/order/105
 
 ### 
 
-GET http://localhost:5000/api/orders/106
+GET http://localhost:5000/api/order/106 
+
+### 1. Get all active sessions (Cashier view)
+
+GET http://localhost:5000/api/cashier/sessions
+
+###
+
+### 2. Get full bill details for a specific session
+
+GET http://localhost:5000/api/cashier/sessions/1
+
+###
+
+### 3. Mark session as COMPLETED (after customer pays)
+
+PUT http://localhost:5000/api/cashier/sessions/1/complete
+Content-Type: application/json
+
+{
+    "payment_method": "cash"
+}
+
+### 1. Staff Login (Admin)
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@cafe.com",
+    "password": "password123"
+}
+
+###
+
+### 2. Staff Login (Kitchen)
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "kitchen@cafe.com",
+    "password": "password123"
+}
+
+###
+
+### 3. Staff Login (Cashier)
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "cashier@cafe.com",
+    "password": "password123"
+}
+
+###
+
+### 4. Verify Token (copy token from login response)
+
+GET http://localhost:5000/api/auth/verify
+Authorization: Bearer YOUR_TOKEN_HERE
